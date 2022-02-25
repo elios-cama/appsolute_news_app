@@ -1,11 +1,13 @@
 class Article {
-  String title, imageUrl, content, description;
+  String title, imageUrl, content, description, url;
 
   Article(
       {required this.title,
       required this.imageUrl,
       required this.content,
-      required this.description});
+      required this.description,
+      required this.url
+      });
 
 
   factory Article.fromJson(Map<String, dynamic> jsonData){
@@ -14,6 +16,7 @@ class Article {
       imageUrl: jsonData['urlToImage']?? "",
       content: jsonData['content']?? "",
       description: jsonData['description']?? "",
+      url: jsonData['url']?? "",
     );
   }    
 }

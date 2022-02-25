@@ -37,6 +37,8 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
+            centerTitle: true,
+            leading: GestureDetector(child: Icon(Icons.download)),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -49,8 +51,12 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(
                       color: Colors.blueAccent, fontStyle: FontStyle.italic),
                 )
+              ,
+              
               ],
+
             ),
+            actions: [Icon(Icons.search)],
             backgroundColor: Colors.black,
           ),
           body: isLoading
@@ -67,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                         child: Container(
                       child: ListView.builder(
-                          itemCount: 4,
+                          itemCount: newsList!.length,
                           itemBuilder: (context, index) {
                             return ArticleTile(size, context, newsList![index]);
                           }),
