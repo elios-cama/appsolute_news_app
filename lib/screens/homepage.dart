@@ -15,6 +15,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Article>? newsList;
   bool isLoading = true;
+
+  
+
   @override
   void initState() {
     // TODO: implement initState
@@ -50,11 +53,8 @@ class _HomePageState extends State<HomePage> {
                   "News",
                   style: TextStyle(
                       color: Colors.blueAccent, fontStyle: FontStyle.italic),
-                )
-              ,
-              
+                ),
               ],
-
             ),
             actions: [Icon(Icons.search)],
             backgroundColor: Colors.black,
@@ -87,10 +87,10 @@ class _HomePageState extends State<HomePage> {
 Widget ArticleTile(Size size, BuildContext context, Article article) {
   return GestureDetector(
     onTap: () {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => DetailNews(
-            article: article,
-          )));
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => DetailNews(
+                article: article,
+              )));
     },
     child: Container(
       margin: EdgeInsets.all(12.0),
@@ -105,7 +105,6 @@ Widget ArticleTile(Size size, BuildContext context, Article article) {
             ),
           ]),
       child: Column(
-        
         children: [
           Container(
               height: size.height / 4,
@@ -113,12 +112,28 @@ Widget ArticleTile(Size size, BuildContext context, Article article) {
               alignment: Alignment.center,
               child: article.imageUrl != ""
                   ? ClipRRect(
-                    borderRadius: BorderRadius.circular(13),
-                    child: Image.network(
-                        article.imageUrl,
-                        fit: BoxFit.cover,
+                      borderRadius: BorderRadius.circular(13),
+                      child: Stack(
+                        children: [
+                          Image.network(
+                            article.imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: GestureDetector(
+                              onTap: (){
+                                       
+                      },
+                      
+                                child: Icon(
+                              Icons.favorite_border_outlined,
+                              color: Colors.white,
+                            )),
+                          )
+                        ],
                       ),
-                  )
+                    )
                   : Text("Image can't be loaded")),
           SizedBox(
             height: 8.0,
