@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:appsolute_news_app/components/savedArticleTile.dart';
 import 'package:appsolute_news_app/providers/favorite.dart';
 import 'package:appsolute_news_app/screens/homepage.dart';
 import 'package:flutter/material.dart';
