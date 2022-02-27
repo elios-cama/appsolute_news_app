@@ -18,5 +18,13 @@ class Article {
       description: jsonData['description']?? "",
       url: jsonData['url']?? "",
     );
-  }    
+  }   
+
+  Map<String, dynamic> toJson() => {
+  'title': title,
+  'imageUrl': imageUrl,
+  'content': content,
+  'description': description,
+  'url' : url
+}; 
 }

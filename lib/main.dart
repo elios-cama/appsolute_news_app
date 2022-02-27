@@ -1,10 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:appsolute_news_app/providers/favorite.dart';
 import 'package:appsolute_news_app/screens/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=> FavoriteProvider())
+      ],
+      child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,4 +25,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
