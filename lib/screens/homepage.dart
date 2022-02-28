@@ -73,10 +73,11 @@ class _HomePageState extends State<HomePage> {
               GestureDetector(
                 onTap: () async{
                   prefs.read();
-                  Article test2 = Article.fromJson(await prefs.read());
+                  //Article test2 = Article.fromJson(await prefs.getListData('listArticles'));
+                  List<String>? savedArticles = await prefs.getListData('listArticles');
 
-                  if(test2 != null){
-                    print(test2.title);
+                  if(savedArticles != null){
+                    print(savedArticles);
                   }else{
                     print("no favorite yet");
                   }

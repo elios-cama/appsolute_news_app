@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:appsolute_news_app/models/article.dart';
 import 'package:appsolute_news_app/providers/favorite.dart';
 import 'package:appsolute_news_app/screens/detail_screen.dart';
@@ -16,6 +18,7 @@ class ArticleTiles extends StatefulWidget {
 class _ArticleTilesState extends State<ArticleTiles> {
   bool _isFavorite = false;
     SharedPref prefs = SharedPref();
+  List<String> savedArticles = [];
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +73,9 @@ class _ArticleTilesState extends State<ArticleTiles> {
                                         context
                                               .read<FavoriteProvider>()
                                               .AddArticles(widget.article);
+                                        
+                                        savedArticles.add(json.encode(widget.article));
+                                        prefs.setListData('listArticles', savedArticles);
                                         prefs.save('article', widget.article);
                                       }
                                       
