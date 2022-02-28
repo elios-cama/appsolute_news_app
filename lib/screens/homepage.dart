@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(builder: (context) => SavedArticles()),
                 );
               },
-              child: Icon(Icons.download),
+              child: Icon(Icons.favorite_border_outlined),
             ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                     print("no favorite yet");
                   }
                   },
-                child: Icon(Icons.search),
+                child: Icon(Icons.save_alt),
               ),
             ],
             backgroundColor: Colors.black,
