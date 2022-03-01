@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: [
               GestureDetector(
-                onTap: () async{
+                /*onTap: () async{
                   prefs.read();
                   //Article test2 = Article.fromJson(await prefs.getListData('listArticles'));
                   List<String>? savedArticles = await prefs.getListData('listArticles');
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                   }else{
                     print("no favorite yet");
                   }
-                  },
+                  },*/
                 child: Icon(Icons.save_alt),
               ),
             ],
