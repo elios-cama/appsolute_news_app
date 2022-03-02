@@ -88,9 +88,7 @@ class _ArticleTilesState extends State<ArticleTiles> {
                                           prefs.save('article', widget.article);
                                         }
                                         
-                                        /*context
-                                            .read<FavoriteProvider>()
-                                            .AddArticles(widget.article);*/
+                                        
                                       });
                                     },
                                     child: Icon(FontAwesomeIcons.heart,

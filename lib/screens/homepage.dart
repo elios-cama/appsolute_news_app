@@ -4,6 +4,7 @@ import 'package:appsolute_news_app/components/articleTile.dart';
 import 'package:appsolute_news_app/models/article.dart';
 import 'package:appsolute_news_app/screens/Saved_screen.dart';
 import 'package:appsolute_news_app/services/news_api.dart';
+import 'package:appsolute_news_app/services/search.dart';
 import 'package:appsolute_news_app/services/sharedpref.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -80,6 +81,9 @@ class _HomePageState extends State<HomePage> {
                     print("no favorite yet");
                   }
                   },*/
+                onTap: (){
+                  showSearch(context: context, delegate: SearchArticles());
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: Icon(FontAwesomeIcons.search, size: 18,)
@@ -89,15 +93,19 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.black,
           ),
           body: isLoading
-              ? Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: size.height / 20,
-                    width: size.width / 20,
-                    child: CircularProgressIndicator(),
-                    color: Colors.black,
+              ? Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Colors.black,
+                      child: Align(
+                          alignment: Alignment.center,
+                          child: CircularProgressIndicator(),
+                        ),
+                    ),
                   ),
-                )
+                ],
+              )
               : Column(
                   children: [
                     Expanded(

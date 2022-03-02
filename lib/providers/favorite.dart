@@ -9,12 +9,12 @@ class FavoriteProvider with ChangeNotifier{
    void AddArticles(Article article){
       _favoriteList.add(article);
       notifyListeners();
-      print("article ajoute ${_favoriteList.length}");
+      
    }
 
    void RemoveArticles(Article article){
      _favoriteList.remove(article);
-     print("article removed ${_favoriteList.length}");
+     
      notifyListeners();
    }
 
