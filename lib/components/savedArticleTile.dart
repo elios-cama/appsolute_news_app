@@ -1,8 +1,8 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, must_be_immutable
+
 import 'package:appsolute_news_app/models/article.dart';
-import 'package:appsolute_news_app/providers/favorite.dart';
 import 'package:appsolute_news_app/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/src/provider.dart';
 
 
 class SavedArticlesTiles extends StatefulWidget {
@@ -28,9 +28,13 @@ class _SavedArticlesTilesState extends State<SavedArticlesTiles> {
       },
       child: Container(
         margin: EdgeInsets.all(12.0),
-        padding: EdgeInsets.only(bottom: 10, left: 5, right: 5),
+        padding: EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 10),
         decoration: BoxDecoration(
-            color: Colors.black,
+          gradient: LinearGradient(
+              colors: [Color(0xFF03045E), Color(0xFF292E82)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
+            
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: [
               BoxShadow(
@@ -39,6 +43,7 @@ class _SavedArticlesTilesState extends State<SavedArticlesTiles> {
               ),
             ]),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
                 height: size.height / 4,

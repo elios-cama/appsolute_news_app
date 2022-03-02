@@ -2,7 +2,6 @@
 
 import 'package:appsolute_news_app/components/savedArticleTile.dart';
 import 'package:appsolute_news_app/providers/favorite.dart';
-import 'package:appsolute_news_app/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 class SavedArticles extends StatefulWidget {
@@ -29,19 +28,22 @@ class _SavedArticlesState extends State<SavedArticles> {
                 Text(
                   "News",
                   style: TextStyle(
-                      color: Colors.blueAccent, fontStyle: FontStyle.italic),
+                      color: Color(0xFF292E82), fontStyle: FontStyle.italic),
                 ),
               ],
             ),
             
             backgroundColor: Colors.black,
           ),
-      body: ListView.builder(
-        itemCount: context.watch<FavoriteProvider>().getList().length,
-        itemBuilder: (context,index){
-          return SavedArticlesTiles(article:context.watch<FavoriteProvider>().getList()[index] );
-        },
-        ),
+      body: Container(
+        color: Colors.black,
+        child: ListView.builder(
+          itemCount: context.watch<FavoriteProvider>().getList().length,
+          itemBuilder: (context,index){
+            return SavedArticlesTiles(article:context.watch<FavoriteProvider>().getList()[index] );
+          },
+          ),
+      ),
     );
   }
 }

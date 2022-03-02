@@ -2,13 +2,12 @@
 
 import 'package:appsolute_news_app/components/articleTile.dart';
 import 'package:appsolute_news_app/models/article.dart';
-import 'package:appsolute_news_app/providers/favorite.dart';
 import 'package:appsolute_news_app/screens/Saved_screen.dart';
-import 'package:appsolute_news_app/screens/detail_screen.dart';
 import 'package:appsolute_news_app/services/news_api.dart';
 import 'package:appsolute_news_app/services/sharedpref.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,7 +24,6 @@ class _HomePageState extends State<HomePage> {
   Article testshare = Article(title: "title", imageUrl: "imageUrl", content: "content", description: "description", url: "url");
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getNews().then((value) {
       setState(() {
@@ -53,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                   MaterialPageRoute(builder: (context) => SavedArticles()),
                 );
               },
-              child: Icon(Icons.favorite_border_outlined),
+              child: Icon(FontAwesomeIcons.heart, size: 20,)
             ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 Text(
                   "News",
                   style: TextStyle(
-                      color: Colors.blueAccent, fontStyle: FontStyle.italic),
+                      color: Color(0xFF4361EE), fontStyle: FontStyle.italic),
                 ),
               ],
             ),
@@ -82,7 +80,10 @@ class _HomePageState extends State<HomePage> {
                     print("no favorite yet");
                   }
                   },*/
-                child: Icon(Icons.save_alt),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Icon(FontAwesomeIcons.search, size: 18,)
+                ),
               ),
             ],
             backgroundColor: Colors.black,
@@ -94,12 +95,14 @@ class _HomePageState extends State<HomePage> {
                     height: size.height / 20,
                     width: size.width / 20,
                     child: CircularProgressIndicator(),
+                    color: Colors.black,
                   ),
                 )
               : Column(
                   children: [
                     Expanded(
                         child: Container(
+                          color: Colors.black,
                       child: ListView.builder(
                           itemCount: newsList!.length,
                           itemBuilder: (context, index) {

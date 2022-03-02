@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'dart:convert';
 
 import 'package:appsolute_news_app/models/article.dart';
@@ -5,6 +7,7 @@ import 'package:appsolute_news_app/providers/favorite.dart';
 import 'package:appsolute_news_app/screens/detail_screen.dart';
 import 'package:appsolute_news_app/services/sharedpref.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/src/provider.dart';
 
 class ArticleTiles extends StatefulWidget {
@@ -33,9 +36,13 @@ class _ArticleTilesState extends State<ArticleTiles> {
       },
       child: Container(
         margin: EdgeInsets.all(12.0),
-        padding: EdgeInsets.only(bottom: 10, left: 5, right: 5),
+        padding: EdgeInsets.only(bottom: 10, left: 10, right: 10, top: 10),
         decoration: BoxDecoration(
-            color: Colors.black,
+            gradient: LinearGradient(
+              colors: [Color(0xFF001845), Color(0xFF292E82)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
+        
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: [
               BoxShadow(
@@ -44,55 +51,58 @@ class _ArticleTilesState extends State<ArticleTiles> {
               ),
             ]),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+                
                 height: size.height / 4,
                 width: size.width / 1.15,
                 alignment: Alignment.center,
                 child: widget.article.imageUrl != ""
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(13),
-                        child: Stack(
-                          children: [
-                            Image.network(
-                              widget.article.imageUrl,
-                              fit: BoxFit.cover,
-                            ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      _isFavorite = !_isFavorite;
-                                      if(_isFavorite == false){
-                                        context
-                                              .read<FavoriteProvider>()
-                                              .RemoveArticles(widget.article);
-                                        prefs.remove();
-                                      }else{
-                                        context
-                                              .read<FavoriteProvider>()
-                                              .AddArticles(widget.article);
-                                        
-                                        savedArticles.add(json.encode(widget.article));
-                                        prefs.setListData('listArticles', savedArticles);
-                                        prefs.save('article', widget.article);
-                                      }
-                                      
-                                      /*context
-                                          .read<FavoriteProvider>()
-                                          .AddArticles(widget.article);*/
-                                    });
-                                  },
-                                  child: Icon(Icons.favorite_border_outlined,
-                                      color: _isFavorite
-                                          ? Colors.yellow
-                                          : Colors.white)),
-                            )
-                          ],
+                    ? Stack(
+                      children: [ClipRRect(
+                          borderRadius: BorderRadius.circular(13),
+                          child: Image.network(
+                            widget.article.imageUrl,
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      )
-                    : Text("Image can't be loaded")),
+                        Align(
+                                alignment: Alignment.topRight,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _isFavorite = !_isFavorite;
+                                        if(_isFavorite == false){
+                                          context
+                                                .read<FavoriteProvider>()
+                                                .RemoveArticles(widget.article);
+                                          prefs.remove();
+                                        }else{
+                                          context
+                                                .read<FavoriteProvider>()
+                                                .AddArticles(widget.article);
+                                          
+                                          savedArticles.add(json.encode(widget.article));
+                                          prefs.setListData('listArticles', savedArticles);
+                                          prefs.save('article', widget.article);
+                                        }
+                                        
+                                        /*context
+                                            .read<FavoriteProvider>()
+                                            .AddArticles(widget.article);*/
+                                      });
+                                    },
+                                    child: Icon(FontAwesomeIcons.heart,
+                                        size: 17,
+                                        color: _isFavorite
+                                            ? Colors.yellow
+                                            : Colors.white)),
+                              )
+                        ],
+                      
+                    )
+                    : Text("Image can't be loaded", style: TextStyle(color: Colors.white),)),
             SizedBox(
               height: 8.0,
             ),
@@ -124,3 +134,36 @@ class _ArticleTilesState extends State<ArticleTiles> {
     );
   }
 }
+
+/*Align(
+                                alignment: Alignment.topRight,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _isFavorite = !_isFavorite;
+                                        if(_isFavorite == false){
+                                          context
+                                                .read<FavoriteProvider>()
+                                                .RemoveArticles(widget.article);
+                                          prefs.remove();
+                                        }else{
+                                          context
+                                                .read<FavoriteProvider>()
+                                                .AddArticles(widget.article);
+                                          
+                                          savedArticles.add(json.encode(widget.article));
+                                          prefs.setListData('listArticles', savedArticles);
+                                          prefs.save('article', widget.article);
+                                        }
+                                        
+                                        /*context
+                                            .read<FavoriteProvider>()
+                                            .AddArticles(widget.article);*/
+                                      });
+                                    },
+                                    child: Icon(Icons.favorite_border_outlined,
+                                        
+                                        color: _isFavorite
+                                            ? Colors.yellow
+                                            : Colors.white)),
+                              )*/
