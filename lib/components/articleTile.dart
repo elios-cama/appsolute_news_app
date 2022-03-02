@@ -91,8 +91,9 @@ class _ArticleTilesState extends State<ArticleTiles> {
                                         
                                       });
                                     },
-                                    child: Icon(FontAwesomeIcons.heart,
-                                        size: 17,
+                                    child: Icon(Icons.favorite,
+                                        size: 23,
+                                        
                                         color: _isFavorite
                                             ? Colors.yellow
                                             : Colors.white)),
